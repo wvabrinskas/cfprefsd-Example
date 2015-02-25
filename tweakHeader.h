@@ -19,9 +19,13 @@ static void savePrefs (id key, id value) { //call this to save a prefs value to 
     
     CFPreferencesSetValue ((__bridge CFStringRef)key,(__bridge CFStringRef)value, CFSTR("BUNDLE_ID_HERE"), kCFPreferencesCurrentUser , kCFPreferencesAnyHost);
     
+    syncPreferences();
+
 }
 
 static void PreferencesChangedCallback() { // call this on tweak load to initialize the dictionary and then call it when you need to reference the plist
+    
+    syncPreferences();
     
     CFStringRef appID = CFSTR("BUNDLE_ID_HERE");
     
